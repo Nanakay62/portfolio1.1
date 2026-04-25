@@ -45,13 +45,14 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
 
         body {
             font-family: 'DM Sans', sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             overflow-x: hidden;
+            max-width: 100vw;
             transition: background 0.4s ease, color 0.4s ease;
         }
 
@@ -70,6 +71,7 @@
             z-index: 0;
             pointer-events: none;
             overflow: hidden;
+            max-width: 100vw;
         }
 
         .bg-mesh .shape {
@@ -197,6 +199,7 @@
             display: flex;
             align-items: center;
             padding: 7rem 2rem 4rem;
+            overflow: hidden;
         }
 
         .hero-grid {
@@ -351,6 +354,7 @@
             justify-content: center;
             position: relative;
             animation: fadeIn 1s 0.2s ease both;
+            padding: 1.5rem 2.5rem;
         }
 
         .profile-ring {
@@ -731,7 +735,7 @@
         .contact-icon.green { background: linear-gradient(135deg, #22c55e, #16a34a); color: white; }
 
         .contact-detail p:first-child { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
-        .contact-detail p:last-child { font-size: 0.9rem; font-weight: 500; }
+        .contact-detail p:last-child { font-size: 0.9rem; font-weight: 500; word-break: break-word; overflow-wrap: break-word; }
 
         .contact-socials { margin-top: 2rem; }
         .contact-socials p { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; }
@@ -906,23 +910,92 @@
         .reveal.visible { opacity: 1; transform: translateY(0); }
 
         /* ——— RESPONSIVE ——— */
+
+        /* Tablet */
         @media (max-width: 900px) {
-            .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 3rem; }
-            .hero-image-wrap { order: -1; }
-            .hero-cta, .hero-socials, .hero-stats { justify-content: center; }
+            section { padding: 4rem 1.25rem; }
+            .container { padding: 0 1.25rem; }
+
+            /* Nav */
             .nav-links { display: none; }
             .hamburger { display: flex; }
-            .about-grid { grid-template-columns: 1fr; }
-            .projects-grid { grid-template-columns: 1fr 1fr; }
+            nav { padding: 0.9rem 1.25rem; }
+
+            /* Hero */
+            #home { padding: 6rem 1.25rem 3rem; }
+            .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 2.5rem; }
+            .hero-image-wrap { order: -1; }
+            .hero-cta { justify-content: center; }
+            .hero-socials { justify-content: center; }
+            .hero-stats { justify-content: center; }
+
+            /* About */
+            .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+            /* Projects */
+            .projects-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+            /* Skills */
             .skills-grid { grid-template-columns: 1fr; }
+
+            /* Contact */
             .contact-grid { grid-template-columns: 1fr; }
+
+            /* Footer */
             .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+            footer { padding: 2.5rem 1.25rem 1.5rem; }
         }
 
+        /* Mobile */
         @media (max-width: 600px) {
-            .projects-grid { grid-template-columns: 1fr; }
-            .profile-ring { width: 260px; height: 260px; }
+            section { padding: 3.5rem 1rem; }
+            .container { padding: 0 1rem; }
+            nav { padding: 0.85rem 1rem; }
+
+            /* Hero — tighten everything */
+            #home { padding: 5.5rem 1rem 2.5rem; }
+            .hero-grid { gap: 2rem; }
+
+            h1 { font-size: 2.4rem; letter-spacing: -0.025em; }
+            .hero-desc { font-size: 0.95rem; }
+            .btn-primary, .btn-outline { padding: 0.75rem 1.5rem; font-size: 0.85rem; }
+            .hero-stats { gap: 1.25rem; }
+            .stat-num { font-size: 1.5rem; }
+
+            /* Profile — smaller ring, badges tucked in */
+            .profile-ring { width: 220px; height: 220px; }
+            .badge { font-size: 0.72rem; padding: 0.45rem 0.9rem; border-radius: 12px; }
+            .badge.b1 { bottom: 0px; right: 0px; }
+            .badge.b2 { top: 10px; left: 0px; }
+
+            /* Projects */
+            .projects-grid { grid-template-columns: 1fr; gap: 1rem; }
+
+            /* Skills tools grid */
+            .tools-grid { grid-template-columns: 1fr; }
+
+            /* Form */
             .form-row { grid-template-columns: 1fr; }
+
+            /* Sections headers */
+            .section-title { font-size: 1.8rem; }
+
+            /* Footer */
+            footer { padding: 2rem 1rem 1.25rem; }
+            .footer-bottom { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+            .footer-brand p { max-width: 100%; }
+
+            /* About cards */
+            .about-card { padding: 1rem 1.2rem; }
+        }
+
+        /* Very small phones */
+        @media (max-width: 380px) {
+            h1 { font-size: 2rem; }
+            .profile-ring { width: 190px; height: 190px; }
+            .badge { display: none; }
+            .hero-cta { flex-direction: column; align-items: center; }
+            .btn-primary, .btn-outline { width: 100%; justify-content: center; }
         }
 
         /* ——— CURSOR STARDUST ——— */
@@ -1069,7 +1142,7 @@
                 <div class="glass" style="border-radius:24px;padding:2rem;">
                     <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.3rem;margin-bottom:1rem;">Who I Am</h3>
                     <p class="about-text">I'm a passionate full-stack developer based in Accra, Ghana, with a keen eye for design and a love for creating seamless user experiences. I specialise in building modern web applications that are both functional and beautiful.</p>
-                    <p class="about-text">My journey spans diverse projects, from e-commerce platforms and AI-powered accounting tools to offline business apps and educational platforms, always pushing the boundaries of what's possible on the web.</p>
+                    <p class="about-text">My journey spans diverse projects — from e-commerce platforms and AI-powered accounting tools to offline business apps and educational platforms — always pushing the boundaries of what's possible on the web.</p>
                     <p class="about-text">When I'm not coding, I'm exploring new technologies, solving real-world problems, and collaborating with clients to bring their visions to life.</p>
                     <div class="about-stats">
                         <div class="stat-card glass">
@@ -1134,7 +1207,7 @@
                 </div>
                 <div class="project-body">
                     <div class="project-title">Ellux Hair Extensions</div>
-                    <p class="project-desc">A premium e-commerce experience for hair extensions, sleek design, smooth checkout, and a shopping flow fit for a queen.</p>
+                    <p class="project-desc">A premium e-commerce experience for hair extensions — sleek design, smooth checkout, and a shopping flow fit for a queen.</p>
                     <div class="project-tags">
                         <span class="tag">E-commerce</span><span class="tag">UI/UX</span>
                     </div>
@@ -1148,7 +1221,7 @@
                 </div>
                 <div class="project-body">
                     <div class="project-title">KSI Sourcing Pro</div>
-                    <p class="project-desc">Supplier auditing tool that generates custom checklists in seconds. Add suppliers, run audits, stay organised...all offline.</p>
+                    <p class="project-desc">Supplier auditing tool that generates custom checklists in seconds. Add suppliers, run audits, stay organised — all offline.</p>
                     <div class="project-tags">
                         <span class="tag">Business</span><span class="tag">Offline App</span>
                     </div>
@@ -1162,7 +1235,7 @@
                 </div>
                 <div class="project-body">
                     <div class="project-title">ND Accounting</div>
-                    <p class="project-desc">AI-powered accounting tool; ask your books anything. "How much stock do I have?" Instant answers, smart insights.</p>
+                    <p class="project-desc">AI-powered accounting tool — ask your books anything. "How much stock do I have?" Instant answers, smart insights.</p>
                     <div class="project-tags">
                         <span class="tag">Accounting</span><span class="tag">AI-Powered</span>
                     </div>
@@ -1176,7 +1249,7 @@
                 </div>
                 <div class="project-body">
                     <div class="project-title">ND Chat</div>
-                    <p class="project-desc">Secure messaging with self-destructing messages. Your privacy, your rules..gone in seconds or saved forever.</p>
+                    <p class="project-desc">Secure messaging with self-destructing messages. Your privacy, your rules — gone in seconds or saved forever.</p>
                     <div class="project-tags">
                         <span class="tag">Messaging</span><span class="tag">Security</span>
                     </div>
@@ -1190,7 +1263,7 @@
                 </div>
                 <div class="project-body">
                     <div class="project-title">DataSci Learning</div>
-                    <p class="project-desc">Interactive data science education platform. Puzzles, games, and "aha!" moments because learning should be fun.</p>
+                    <p class="project-desc">Interactive data science education platform. Puzzles, games, and "aha!" moments — because learning should be fun.</p>
                     <div class="project-tags">
                         <span class="tag">Education</span><span class="tag">In Dev</span>
                     </div>
@@ -1204,7 +1277,7 @@
                 </div>
                 <div class="project-body">
                     <div class="project-title">Henriquez Landscaping</div>
-                    <p class="project-desc">Professional landscaping service site, clean design that turns wild gardens into sculpted beauty.</p>
+                    <p class="project-desc">Professional landscaping service site — clean design that turns wild gardens into sculpted beauty.</p>
                     <div class="project-tags">
                         <span class="tag">Landscaping</span><span class="tag">Service</span>
                     </div>
@@ -1470,8 +1543,7 @@ const skillObs = new IntersectionObserver((entries) => {
 skillFills.forEach(f => skillObs.observe(f));
 
 // ——— EMAILJS SETUP ———
-
-const EMAILJS_PUBLIC_KEY  = '92Z3e6otryflacwwS';  
+const EMAILJS_PUBLIC_KEY  = '92Z3e6otryflacwwS'; 
 const EMAILJS_SERVICE_ID  = 'service_29d1tfl';   
 const EMAILJS_TEMPLATE_ID = 'template_7iyydrj';  
 
@@ -1526,7 +1598,7 @@ document.getElementById('contact-form').addEventListener('submit', async e => {
             btn.disabled = false;
         }
     } else {
-        // If EmailJS do not work properly — fall back to mailto
+        // EmailJS not functional? fall back to mailto
         const subject = encodeURIComponent(templateParams.subject || 'Portfolio Enquiry');
         const body = encodeURIComponent(
             `Name: ${templateParams.from_name}\nEmail: ${templateParams.reply_to}\n\n${templateParams.message}`
