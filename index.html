@@ -1470,16 +1470,10 @@ const skillObs = new IntersectionObserver((entries) => {
 skillFills.forEach(f => skillObs.observe(f));
 
 // ——— EMAILJS SETUP ———
-// HOW TO ACTIVATE REAL EMAIL SENDING (free, 200 emails/month):
-// 1. Go to https://www.emailjs.com and sign up free
-// 2. Add an Email Service (Gmail, Outlook, etc.) → copy your Service ID
-// 3. Create an Email Template with these variables: {{from_name}}, {{reply_to}}, {{subject}}, {{message}}
-//    In the template "To email" field set it to: nanakwamedickson@outlook.com
-// 4. Go to Account → API Keys → copy your Public Key
-// 5. Replace the three placeholder values below with your real IDs
-const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';   // ← paste here
-const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';   // ← paste here
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // ← paste here
+
+const EMAILJS_PUBLIC_KEY  = '92Z3e6otryflacwwS';  
+const EMAILJS_SERVICE_ID  = 'service_29d1tfl';   
+const EMAILJS_TEMPLATE_ID = 'template_7iyydrj';  
 
 const isEmailJSConfigured = !EMAILJS_PUBLIC_KEY.includes('YOUR_');
 
@@ -1532,7 +1526,7 @@ document.getElementById('contact-form').addEventListener('submit', async e => {
             btn.disabled = false;
         }
     } else {
-        // EmailJS not yet configured — fall back to mailto
+        // If EmailJS do not work properly — fall back to mailto
         const subject = encodeURIComponent(templateParams.subject || 'Portfolio Enquiry');
         const body = encodeURIComponent(
             `Name: ${templateParams.from_name}\nEmail: ${templateParams.reply_to}\n\n${templateParams.message}`
